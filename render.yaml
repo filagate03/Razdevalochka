@@ -3,6 +3,7 @@ services:
     name: telegram-ai-main
     env: python
     plan: free
+    pythonVersion: 3.11.8
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python bot_main/main.py
     envVars:
@@ -36,6 +37,7 @@ services:
     name: telegram-stars-bot
     env: python
     plan: free
+    pythonVersion: 3.11.8
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python bot_stars/main.py
     envVars:
