@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: telegram-ai-main
+    env: python
+    plan: free
+    pythonVersion: 3.11.8
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python bot_main/main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: MAIN_BOT_TOKEN
+        sync: false
+      - key: AI_API_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: YOOKASSA_SHOP_ID
+        sync: false
+      - key: YOOKASSA_SECRET_KEY
+        sync: false
+      - key: CLOUDPAYMENTS_PUBLIC_ID
+        sync: false
+      - key: CLOUDPAYMENTS_API_SECRET
+        sync: false
+      - key: CRYPTOBOT_API_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: WEBHOOK_BASE_URL
+        sync: false
+      - key: WEBHOOK_SECRET
+        sync: false
+      - key: STARS_BOT_USERNAME
+        sync: false
+  - type: worker
+    name: telegram-stars-bot
+    env: python
+    plan: free
+    pythonVersion: 3.11.8
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python bot_stars/main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: STARS_BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
