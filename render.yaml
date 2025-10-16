@@ -7,6 +7,8 @@ services:
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python bot_main/main.py
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
       - key: MAIN_BOT_TOKEN
         sync: false
       - key: AI_API_URL
@@ -41,6 +43,8 @@ services:
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python bot_stars/main.py
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
       - key: STARS_BOT_TOKEN
         sync: false
       - key: DATABASE_URL
