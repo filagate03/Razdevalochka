@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 import signal
 from contextlib import suppress
 
@@ -68,7 +69,9 @@ async def set_commands(bot: Bot) -> None:
 
 
 async def start_webhook_server(stop_event: asyncio.Event) -> None:
-    config = uvicorn.Config(fastapi_app, host="0.0.0.0", port=8000, log_level="info")
+    port = int(os.environ.get("PORT", "8000"))
+    logger.info("Starting webhook server on port %s", port)
+    config = uvicorn.Config(fastapi_app, host="0.0.0.0", port=port, log_level="info")
     server = uvicorn.Server(config)
     stop_waiter = asyncio.create_task(stop_event.wait(), name="stop_event_waiter")
     server_task = asyncio.create_task(server.serve(), name="uvicorn_server")
